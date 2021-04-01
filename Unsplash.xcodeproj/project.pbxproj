@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7D4418C53DC09CD5E7044C42 /* Pods_Unsplash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F90210C528CFA202E3CE36 /* Pods_Unsplash.framework */; };
+		DE1CE2A826160E8D00EBB5F7 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2A726160E8D00EBB5F7 /* NetworkManger.swift */; };
+		DE1CE2AB26160F2D00EBB5F7 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2AA26160F2D00EBB5F7 /* BaseInterceptor.swift */; };
+		DE1CE2AE2616127A00EBB5F7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2AD2616127A00EBB5F7 /* Logger.swift */; };
+		DE1CE2B1261613B600EBB5F7 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2B0261613B600EBB5F7 /* SearchRouter.swift */; };
 		DEDA430F2614B146001CD7FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA430E2614B146001CD7FF /* AppDelegate.swift */; };
 		DEDA43112614B146001CD7FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA43102614B146001CD7FF /* SceneDelegate.swift */; };
 		DEDA43132614B146001CD7FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA43122614B146001CD7FF /* HomeViewController.swift */; };
@@ -24,6 +28,10 @@
 		698F760F390E680A0F173893 /* Pods-Unsplash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash.release.xcconfig"; path = "Target Support Files/Pods-Unsplash/Pods-Unsplash.release.xcconfig"; sourceTree = "<group>"; };
 		89F90210C528CFA202E3CE36 /* Pods_Unsplash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81030E522B2DBE66378A61A /* Pods-Unsplash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash/Pods-Unsplash.debug.xcconfig"; sourceTree = "<group>"; };
+		DE1CE2A726160E8D00EBB5F7 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
+		DE1CE2AA26160F2D00EBB5F7 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
+		DE1CE2AD2616127A00EBB5F7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		DE1CE2B0261613B600EBB5F7 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		DEDA430B2614B146001CD7FF /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA430E2614B146001CD7FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEDA43102614B146001CD7FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +75,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DE1CE2A626160E6900EBB5F7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE1CE2A726160E8D00EBB5F7 /* NetworkManger.swift */,
+				DE1CE2AD2616127A00EBB5F7 /* Logger.swift */,
+				DE1CE2AA26160F2D00EBB5F7 /* BaseInterceptor.swift */,
+				DE1CE2B0261613B600EBB5F7 /* SearchRouter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		DEDA43022614B146001CD7FF = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +107,7 @@
 		DEDA430D2614B146001CD7FF /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
+				DE1CE2A626160E6900EBB5F7 /* Network */,
 				DEDA431C2614B148001CD7FF /* Info.plist */,
 				DEDA43332614C66B001CD7FF /* Utils */,
 				DEDA43232614B47A001CD7FF /* Resource */,
@@ -251,7 +271,11 @@
 			files = (
 				DEDA43132614B146001CD7FF /* HomeViewController.swift in Sources */,
 				DEDA432C2614B52B001CD7FF /* PhotoCellectionViewController.swift in Sources */,
+				DE1CE2B1261613B600EBB5F7 /* SearchRouter.swift in Sources */,
+				DE1CE2AB26160F2D00EBB5F7 /* BaseInterceptor.swift in Sources */,
+				DE1CE2A826160E8D00EBB5F7 /* NetworkManger.swift in Sources */,
 				DEDA43292614B4EC001CD7FF /* UserListViewController.swift in Sources */,
+				DE1CE2AE2616127A00EBB5F7 /* Logger.swift in Sources */,
 				DEDA430F2614B146001CD7FF /* AppDelegate.swift in Sources */,
 				DEDA43112614B146001CD7FF /* SceneDelegate.swift in Sources */,
 				DEDA43392614C862001CD7FF /* BaseViewController.swift in Sources */,

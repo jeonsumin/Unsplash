@@ -7,8 +7,9 @@
 
 import UIKit
 import Toast_Swift
+import Alamofire
 
-class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate{
+class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecognizerDelegate{
     
     @IBOutlet weak var searchFilterSeg: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -46,7 +47,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
         //키보드 노티피케이션 해제
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
-
+        
     }
     
     //화면이 넘어가기 전에 준비
@@ -129,12 +130,43 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
         //포커싱 on
         searchBar.becomeFirstResponder()
         //포커싱 off
-        //        searchBar.resignFirstResponder()
+        //searchBar.resignFirstResponder()
     }
     
     @IBAction func didTappedSearchButton(_ sender: UIButton) {
         NSLog("HomeViewController - didTappedSearchButton() called \(searchFilterSeg.selectedSegmentIndex)")
-        pushVC()
+        //        pushVC()
+        
+        guard let userInput = self.searchBar.text else { return }
+        
+        //        let url = API.BASE_URL + "search/photos"
+        
+        //key, value 형식의 딕셔너리
+        //        let queryParam = ["query" : userInput, "client_id": API.CLIENT_ID]
+        
+        //        AF.request(url,method: .get,parameters: queryParam).responseJSON(completionHandler: { response in
+        //            debugPrint(response)
+        //        })
+        var urlToCall: URLRequestConvertible?
+        switch searchFilterSeg.selectedSegmentIndex {
+        case 0:
+            urlToCall = searchRouter.searchPhotos(term: userInput)
+        case 1:
+            urlToCall = searchRouter.searchUsers(term: userInput)
+        default:
+            print("defualt")
+        }
+        if let urlConvertibel = urlToCall{
+            NetworkManager
+                .shared
+                .session
+                .request(urlConvertibel)
+                .validate(statusCode: 200..<401)
+                .responseJSON { (response) in
+                debugPrint(response)
+            }
+        }
+        
     }
     
     //MARK: - UISearchBar Delegate methods
@@ -175,11 +207,11 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
             
         }
         
-//        if inputTextCount <= 12 {
-//            return true
-//        }else{
-//            return false
-//        }
+        //        if inputTextCount <= 12 {
+        //            return true
+        //        }else{
+        //            return false
+        //        }
         
         return inputTextCount <= 12
     }
