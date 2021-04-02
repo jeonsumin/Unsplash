@@ -3,7 +3,7 @@
 //  Unsplash
 //
 //  Created by Terry on 2021/04/01.
-//
+// 모든 뷰에 공통적으로 사용해야할때 baseVC를 만들어서 사용하면 효율적?
 
 import UIKit
 import Toast_Swift

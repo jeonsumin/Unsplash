@@ -19,16 +19,19 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
     var Photos = [Photo]()
     var users = [Users]()
     
+    // 빈공간 터치시 키보드 내려가게하는 제스쳐 추가
     var keyboardDismissTabGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
     //MARK:- override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        //delegate 설정
         searchBar.delegate = self
         keyboardDismissTabGesture.delegate = self
         self.config()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NSLog("HomeViewController viewWillAppear() called")
@@ -54,6 +57,7 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
     
     //화면이 넘어가기 전에 준비
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //세그를 이용한 화면 전환시 identifier를 통해 분기
         switch segue.identifier {
         case segueId.PHOTO_LIST:
             //다음 화면의 뷰컨트롤러를 가져온다.
@@ -93,6 +97,7 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
         self.view.addGestureRecognizer(keyboardDismissTabGesture)
         
     }
+    // 실제로 화면 이동(segure)
     private func pushVC(){
         var segueId: String = ""
         switch searchFilterSeg.selectedSegmentIndex {
@@ -108,9 +113,11 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
         self.performSegue(withIdentifier: segueId, sender: self)
     }
     
+    //노티피케이션 키보드 보여주는 핸들러
     @objc func keyboardWillShowHandle(notification: NSNotification){
         //키보드 사이즈 가져오기
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            //키보드 높이 보다 검색버튼이 높을 경우 검색버튼 높이 만큼 화면 올리기
             if keyboardSize.height < SearchButton.frame.origin.y {
                 let distance = keyboardSize.height - SearchButton.frame.origin.y
                 self.view.frame.origin.y = distance + SearchButton.frame.height
@@ -119,6 +126,7 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
         }
         self.view.frame.origin.y = -100
     }
+    //노티피케이션 키보드 사라졌을때 핸들러
     @objc func keyboardWillHidehandle(){
         self.view.frame.origin.y = 0
         
@@ -151,17 +159,20 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
         NSLog("HomeViewController - didTappedSearchButton() called \(searchFilterSeg.selectedSegmentIndex)")
         //        pushVC()
         var segueId: String = ""
+        
+        //검색내용 가져오기
         guard let userInput = self.searchBar.text else { return }
         
+        //서치필터별 데이터 호출
         switch searchFilterSeg.selectedSegmentIndex {
         case 0:
 //            urlToCall = searchRouter.searchPhotos(term: userInput)
+            searchIndicator.display(<#T##layer: CALayer##CALayer#>)
             NetworkManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let fetchedPhotos):
-        
                     self.Photos = fetchedPhotos
                 case .failure(let error):
                     self.view.makeToast("📢 \(error) 📢", duration:1.0, position: .center)
@@ -184,7 +195,6 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
             print("defualt")
         }
        
-        
         self.performSegue(withIdentifier: segueId, sender: self)
     }
     
