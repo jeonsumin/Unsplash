@@ -16,6 +16,8 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
     @IBOutlet weak var SearchButton: UIButton!
     @IBOutlet weak var searchIndicator: UIActivityIndicatorView!
     
+    var Photos = [Photo]()
+    var users = [Users]()
     
     var keyboardDismissTabGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
     //MARK:- override methods
@@ -57,14 +59,26 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
             //다음 화면의 뷰컨트롤러를 가져온다.
             let nextVc = segue.destination as! PhotoCellectionViewController
             
+            // 검색어 가져오기
             guard let userInputText = searchBar.text else { return }
+            
+            // 다음화면의 검색어 타이틀로 설정
             nextVc.vcTitle = userInputText
+            
+            // 다음화면으로 검색리스트 보내기
+            nextVc.photo = self.Photos
+            
         case segueId.USER_LIST:
             //다음 화면의 뷰컨트롤러를 가져온다.
             let nextVc = segue.destination as! UserListViewController
             
+            //검색어 가져오기
             guard let userInputText = searchBar.text else { return }
+            //다음화면의 검색어로 타이틀 설정
             nextVc.vcTitle = userInputText
+            // 다음화면으로 검색리스트 보내기
+            nextVc.userList = self.users
+            
         default:
             print("default")
         }
@@ -136,37 +150,42 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
     @IBAction func didTappedSearchButton(_ sender: UIButton) {
         NSLog("HomeViewController - didTappedSearchButton() called \(searchFilterSeg.selectedSegmentIndex)")
         //        pushVC()
-        
+        var segueId: String = ""
         guard let userInput = self.searchBar.text else { return }
         
-        //        let url = API.BASE_URL + "search/photos"
-        
-        //key, value 형식의 딕셔너리
-        //        let queryParam = ["query" : userInput, "client_id": API.CLIENT_ID]
-        
-        //        AF.request(url,method: .get,parameters: queryParam).responseJSON(completionHandler: { response in
-        //            debugPrint(response)
-        //        })
-        var urlToCall: URLRequestConvertible?
         switch searchFilterSeg.selectedSegmentIndex {
         case 0:
-            urlToCall = searchRouter.searchPhotos(term: userInput)
+//            urlToCall = searchRouter.searchPhotos(term: userInput)
+            NetworkManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let fetchedPhotos):
+        
+                    self.Photos = fetchedPhotos
+                case .failure(let error):
+                    self.view.makeToast("📢 \(error) 📢", duration:1.0, position: .center)
+                }
+            }
+            segueId = "seguePhoto"
         case 1:
-            urlToCall = searchRouter.searchUsers(term: userInput)
+//            urlToCall = searchRouter.searchUsers(term: userInput)
+            NetworkManager.shared.getUsers(searchTerm: userInput) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let fetchedUsers):
+                    self.users = fetchedUsers
+                case .failure(let error):
+                    self.view.makeToast("📢 \(error) 📢", duration:1.0, position: .center)
+                }
+            }
+            segueId = "segueUserList"
         default:
             print("defualt")
         }
-        if let urlConvertibel = urlToCall{
-            NetworkManager
-                .shared
-                .session
-                .request(urlConvertibel)
-                .validate(statusCode: 200..<401)
-                .responseJSON { (response) in
-                debugPrint(response)
-            }
-        }
+       
         
+        self.performSegue(withIdentifier: segueId, sender: self)
     }
     
     //MARK: - UISearchBar Delegate methods

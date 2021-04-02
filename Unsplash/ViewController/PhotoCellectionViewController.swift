@@ -9,9 +9,10 @@ import UIKit
 
 class PhotoCellectionViewController: BaseViewController {
 
+    var photo: [Photo] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NSLog("photoCellection photo.count \(photo.count)")
         // Do any additional setup after loading the view.
     }
     

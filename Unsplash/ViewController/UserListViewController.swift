@@ -9,9 +9,11 @@ import UIKit
 
 class UserListViewController: BaseViewController {
 
+    var userList = [Users]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NSLog("UserList userList.count \(userList.count)")
         // Do any additional setup after loading the view.
     }
     

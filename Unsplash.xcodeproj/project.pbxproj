@@ -12,6 +12,9 @@
 		DE1CE2AB26160F2D00EBB5F7 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2AA26160F2D00EBB5F7 /* BaseInterceptor.swift */; };
 		DE1CE2AE2616127A00EBB5F7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2AD2616127A00EBB5F7 /* Logger.swift */; };
 		DE1CE2B1261613B600EBB5F7 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CE2B0261613B600EBB5F7 /* SearchRouter.swift */; };
+		DEA7EBBA261727B800C9E2A4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7EBB9261727B800C9E2A4 /* Photo.swift */; };
+		DEA7EBBD261727FD00C9E2A4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7EBBC261727FD00C9E2A4 /* Error.swift */; };
+		DEA7EBC62617304D00C9E2A4 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7EBC52617304D00C9E2A4 /* Users.swift */; };
 		DEDA430F2614B146001CD7FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA430E2614B146001CD7FF /* AppDelegate.swift */; };
 		DEDA43112614B146001CD7FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA43102614B146001CD7FF /* SceneDelegate.swift */; };
 		DEDA43132614B146001CD7FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA43122614B146001CD7FF /* HomeViewController.swift */; };
@@ -32,6 +35,9 @@
 		DE1CE2AA26160F2D00EBB5F7 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
 		DE1CE2AD2616127A00EBB5F7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DE1CE2B0261613B600EBB5F7 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		DEA7EBB9261727B800C9E2A4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		DEA7EBBC261727FD00C9E2A4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		DEA7EBC52617304D00C9E2A4 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		DEDA430B2614B146001CD7FF /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA430E2614B146001CD7FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEDA43102614B146001CD7FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +92,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		DEA7EBB8261727AA00C9E2A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DEA7EBB9261727B800C9E2A4 /* Photo.swift */,
+				DEA7EBC52617304D00C9E2A4 /* Users.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DEDA43022614B146001CD7FF = {
 			isa = PBXGroup;
 			children = (
@@ -107,8 +122,9 @@
 		DEDA430D2614B146001CD7FF /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
-				DE1CE2A626160E6900EBB5F7 /* Network */,
 				DEDA431C2614B148001CD7FF /* Info.plist */,
+				DEA7EBB8261727AA00C9E2A4 /* Model */,
+				DE1CE2A626160E6900EBB5F7 /* Network */,
 				DEDA43332614C66B001CD7FF /* Utils */,
 				DEDA43232614B47A001CD7FF /* Resource */,
 				DEDA43252614B496001CD7FF /* ViewController */,
@@ -151,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				DEDA43342614C67C001CD7FF /* Constants.swift */,
+				DEA7EBBC261727FD00C9E2A4 /* Error.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -269,10 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA7EBBA261727B800C9E2A4 /* Photo.swift in Sources */,
 				DEDA43132614B146001CD7FF /* HomeViewController.swift in Sources */,
 				DEDA432C2614B52B001CD7FF /* PhotoCellectionViewController.swift in Sources */,
+				DEA7EBBD261727FD00C9E2A4 /* Error.swift in Sources */,
 				DE1CE2B1261613B600EBB5F7 /* SearchRouter.swift in Sources */,
 				DE1CE2AB26160F2D00EBB5F7 /* BaseInterceptor.swift in Sources */,
+				DEA7EBC62617304D00C9E2A4 /* Users.swift in Sources */,
 				DE1CE2A826160E8D00EBB5F7 /* NetworkManger.swift in Sources */,
 				DEDA43292614B4EC001CD7FF /* UserListViewController.swift in Sources */,
 				DE1CE2AE2616127A00EBB5F7 /* Logger.swift in Sources */,
