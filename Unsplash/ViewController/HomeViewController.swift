@@ -167,7 +167,6 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
         switch searchFilterSeg.selectedSegmentIndex {
         case 0:
 //            urlToCall = searchRouter.searchPhotos(term: userInput)
-            searchIndicator.display(<#T##layer: CALayer##CALayer#>)
             NetworkManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
                 guard let self = self else { return }
                 
