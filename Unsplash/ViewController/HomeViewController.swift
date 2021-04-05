@@ -81,6 +81,7 @@ class HomeViewController:BaseViewController, UISearchBarDelegate, UIGestureRecog
             //다음화면의 검색어로 타이틀 설정
             nextVc.vcTitle = userInputText
             // 다음화면으로 검색리스트 보내기
+            
             nextVc.userList = self.users
             
         default:

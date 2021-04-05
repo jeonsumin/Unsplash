@@ -6,25 +6,45 @@
 //
 
 import UIKit
+import SDWebImage
 
-class PhotoCellectionViewController: BaseViewController {
-
-    var photo: [Photo] = []
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        NSLog("photoCellection photo.count \(photo.count)")
-        // Do any additional setup after loading the view.
+class PhotoCellectionViewController: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    var photo = [Photo]()
+    @IBOutlet weak var collectionView: UICollectionView!
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        // Do any additional setup after loading the view.
+        NSLog("photoCollectoinView - photo : \(photo)")
     }
-    */
+    
+    //MARK: - CollectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //        return photo.count
+        return photo.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? photoCell else {
+            return UICollectionViewCell()
+        }
+        let photos: Photo = self.photo[indexPath.row]
+        cell.photoImage.sd_setImage(with: URL(string: photos.thumbnail), completed: nil)
+        cell.photoImage.contentMode = .scaleAspectFill
+        
+        cell.backgroundColor = .blue
+        return cell
+    }
+    
+    //MARK:- private Methods
+}
 
+class photoCell:UICollectionViewCell{
+    @IBOutlet weak var photoImage: UIImageView!
 }

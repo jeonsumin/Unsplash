@@ -9,4 +9,5 @@ target 'Unsplash' do
 pod 'Toast-Swift','~>5.0.1'
 pod 'Alamofire', '~> 5.2'
 pod 'SwiftyJSON', '~> 4.0'
+pod 'SDWebImage', '~> 5.0'
 end

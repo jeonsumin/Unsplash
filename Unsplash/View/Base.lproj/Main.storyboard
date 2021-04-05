@@ -105,7 +105,7 @@
         <scene sceneID="PiJ-rv-zYk">
             <objects>
                 <viewController id="pOK-fe-9fz" customClass="UserListViewController" customModule="Unsplash" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gVv-9L-3Nc">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="UserListView" id="gVv-9L-3Nc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="tpP-fW-wJV"/>
@@ -138,18 +138,60 @@
         <!--Photo Cellection View Controller-->
         <scene sceneID="XYt-wQ-FAQ">
             <objects>
-                <viewController id="DLn-5W-Mgw" customClass="PhotoCellectionViewController" customModule="Unsplash" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoView" id="DLn-5W-Mgw" customClass="PhotoCellectionViewController" customModule="Unsplash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n1c-Xy-rH7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ty5-k7-XqQ">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BlG-uh-CgS">
+                                    <size key="itemSize" width="196" height="196"/>
+                                    <size key="estimatedItemSize" width="185" height="185"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="ZAQ-BT-2PG" customClass="photoCell" customModule="Unsplash" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amJ-O4-vXD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="185"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <size key="customSize" width="180" height="180"/>
+                                        <connections>
+                                            <outlet property="photoImage" destination="amJ-O4-vXD" id="eMs-2E-Aoi"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dlD-i5-cJh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ty5-k7-XqQ" firstAttribute="leading" secondItem="dlD-i5-cJh" secondAttribute="leading" id="4j9-TF-7TE"/>
+                            <constraint firstItem="dlD-i5-cJh" firstAttribute="trailing" secondItem="ty5-k7-XqQ" secondAttribute="trailing" id="8mz-bc-puV"/>
+                            <constraint firstItem="dlD-i5-cJh" firstAttribute="bottom" secondItem="ty5-k7-XqQ" secondAttribute="bottom" id="FlR-L0-y2b"/>
+                            <constraint firstItem="ty5-k7-XqQ" firstAttribute="top" secondItem="dlD-i5-cJh" secondAttribute="top" id="jaf-c2-fyw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yib-OH-pp1"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ty5-k7-XqQ" id="l8g-Qc-vM2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WmT-bc-Jom" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2012" y="476"/>
+            <point key="canvasLocation" x="2011.594202898551" y="475.44642857142856"/>
         </scene>
     </scenes>
     <resources>
